@@ -16,8 +16,9 @@
     border-right: 1px solid #bbb;
 }
 
-.top-nav li:last-child {
+.last, .top-nav li:last-child {
     border-right: none;
+    border-left: 1px solid #bbb;
 }
 
 .top-nav a {
