@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body>
+
+    <nav th:replace = "fragments :: nav-list"></nav>
+
+    <table class = "table table-striped">
+            <th>Name</th>
+            <td th:text="${item.name}"></td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td th:text="${item.itemCategory.name}"></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td th:text="${item.itemDetails.itemDescription}"></td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td th:text="${item.itemDetails.quantity}"></td>
+        </tr>
+        <tr>
+            <th>Last Modified By</th>
+            <td th:text="${item.lastModified}"></td>
+        </tr>
+    </table>
+
+    <form th:action="@{'/edit/' + ${item.id}}">
+        <input type="submit" value="Edit" />
+    </form>
+
+    <form th:action="@{'/delete/' + ${item.id}}">
+        <input type="submit" value="Delete" />
+    </form>
+
+</body>
+</html>

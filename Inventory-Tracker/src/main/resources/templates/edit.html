@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body>
+
+    <nav th:replace = "fragments :: nav-list"></nav>
+
+
+
+    <form method="post" th:action="@{'/edit/'+ ${item.id}}">
+        <table class = "table table-striped">
+            <th>Name</th>
+            <td><input th:field="${item.name}" /></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td><select th:field="${item.itemCategory}">
+                    <option th:each="category : ${categories}"
+                            th:text="${category.name}"
+                            th:value="${category.id}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td> <input th:field="${item.itemDetails.itemDescription}"/></td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td> <input th:field="${item.itemDetails.quantity}"/></td>
+            </tr>
+        </table>
+        <input  type="submit" value="Update" />
+    </form>
+
+</body>
+</html>

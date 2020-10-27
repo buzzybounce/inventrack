@@ -5,6 +5,54 @@
 
 <nav th:replace = "fragments :: nav-search"></nav>
 
-<p>Hello Search</p>
+
+<div class="container body-content">
+    <form th:action="@{/search/results}" method="post">
+        <h2>Search</h2>
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <h2>Search By</h2>
+
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                    type="radio"
+                    name="searchType"
+                    th:id="${column.key}"
+                    th:value="${column.key}"
+                    th:checked="${column.key == 'all'}"
+                />
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+        </p>
+
+        <input type="submit" value="Search" />
+    </form>
+
+    <hr />
+
+    <table class="job-listing">
+        <tr th:each="item : ${items}">
+            <td>
+                <p>
+                    Item Name:
+                    <a th:href="@{'/view/' + ${item.id}}" th:text="${item.name}"></a>
+                </p>
+                <p th:text="${'Description: ' + item.itemDetails.itemDescription}"></a>
+                </p>
+                <p th:text ="'Quantity: ' + ${item.itemDetails.quantity}">
+                </p>
+
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+
 </body>
 </html>

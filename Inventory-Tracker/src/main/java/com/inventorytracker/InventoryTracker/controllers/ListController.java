@@ -1,6 +1,9 @@
 package com.inventorytracker.InventoryTracker.controllers;
 
+import com.inventorytracker.InventoryTracker.data.ItemCategoryRepository;
+import com.inventorytracker.InventoryTracker.data.ItemRepository;
 import com.inventorytracker.InventoryTracker.data.UserRepository;
+import com.inventorytracker.InventoryTracker.model.ItemCategory;
 import com.inventorytracker.InventoryTracker.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,12 @@ public class ListController {
     UserRepository userRepository;
 
     @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
+    ItemCategoryRepository itemCategoryRepository;
+
+    @Autowired
     AuthenticationController authenticationController;
 
     @RequestMapping
@@ -28,7 +37,8 @@ public class ListController {
 
         model.addAttribute("user", user.getUsername());
 
-        model.addAttribute("title", "List");
+        model.addAttribute("title", "List Items");
+        model.addAttribute("items",itemRepository.findAll());
         return "list";
 
     }

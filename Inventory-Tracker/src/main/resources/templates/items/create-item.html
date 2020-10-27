@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace = "fragments :: head"></head>
+<body>
+
+<nav th:replace = "fragments :: nav-create"></nav>
+
+<h1 th:text="${title}"></h1>
+
+<p th:text ="${errorMsg}" style="color:red;"></p>
+
+<form method="post" style="max-width:600px;" action="create-item">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="${item.name}" />
+        <span th:errors="${item.name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        <select th:field="${item.itemCategory}">
+            <option th:each="category : ${categories}"
+                    th:text="${category.name}"
+                    th:value="${category.id}"></option>
+        </select>
+        <a th:href="@{'/items/create-category'}">Add Category</a>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Description</label>
+        <input class="form-control" th:field="${item.itemDetails.itemDescription}" />
+<!--        <span th:errors="${item.name}" class="error"></span>-->
+    </div>
+
+    <div class="form-group">
+        <label th:for="quantity">Quantity</label>
+        <input class="form-control" th:field="${item.itemDetails.quantity}" />
+<!--        <span th:errors="${item.name}" class="error"></span>-->
+    </div>
+
+    <input type="submit" value="Add Item" />
+</form>
+
+</body>
+</html>

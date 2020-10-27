@@ -1,5 +1,11 @@
 /* Change color of Nav Bar with .top-nav background-color */
 
+nav {
+
+    padding-bottom: 48px;
+
+}
+
 .top-nav {
   list-style-type: none;
   margin: 0;
@@ -35,10 +41,4 @@
 
 .active {
     background-color: #4CAF50;
-}
-
-h1 {
-
-    padding: 48px 0px;
-
 }
